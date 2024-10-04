@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volunteer Parking Access</title>
-    <style>
-        body {
-            background-color: green;
-            margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
-</head>
-<body>
-    <h1 style="color: white;">Access Granted</h1>
-</body>
-</html>
+<mport qrcode
+
+# Define base URL
+base_url = "https://kwamealele.github.io/Volunteer-Parking/user"
+
+# Generate 200 QR codes
+for i in range(1, 201):
+    # Create a unique URL for each user
+    url = f"{base_url}{i}"
+    
+    # Generate QR code for the URL
+    qr_img = qrcode.make(url)
+    
+    # Save the QR code as an image file
+    qr_img.save(f"/mnt/data/qr_code_user_{i}.png")
