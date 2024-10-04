@@ -13,3 +13,54 @@ for i in range(1, 201):
     
     # Save the QR code as an image file
     qr_img.save(f"/mnt/data/qr_code_user_{i}.png")
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Parking Access</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <script>
+        // Function to get the value of a specific cookie
+        function getCookie(name) {
+            let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? match[2] : null;
+        }
+
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days*24*60*60*1000));
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        // Function to change background based on visit count
+        function changeBackground() {
+            let visits = getCookie("visits");
+            visits = visits ? parseInt(visits) : 0;
+            visits += 1;
+            setCookie("visits", visits, 7); // Cookie will last for 7 days
+
+            if (visits > 2) {
+                document.body.style.backgroundColor = "red"; // Change to red after two visits
+            } else {
+                document.body.style.backgroundColor = "green"; // Default to green
+            }
+        }
+
+        window.onload = changeBackground;
+    </script>
+</head>
+<body>
+    <h1 style="color: white;">Access Granted</h1>
+</body>
+</html>
