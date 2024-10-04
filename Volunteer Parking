@@ -1,0 +1,15 @@
+mport qrcode
+
+# Define base URL
+base_url = "https://kwamealele.github.io/Volunteer-Parking/user"
+
+# Generate 200 QR codes
+for i in range(1, 201):
+    # Create a unique URL for each user
+    url = f"{base_url}{i}"
+    
+    # Generate QR code for the URL
+    qr_img = qrcode.make(url)
+    
+    # Save the QR code as an image file
+    qr_img.save(f"/mnt/data/qr_code_user_{i}.png")
